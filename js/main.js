@@ -79,35 +79,62 @@
 //parent of the screen is = window
 
 //selectors
-document.getElementById('my-form');
-const items=document.querySelectorAll('.item');
-console.log(document.querySelectorAll('.item'));
+// document.getElementById('my-form');
+// const items=document.querySelectorAll('.item');
+// console.log(document.querySelectorAll('.item'));
 
-items.forEach(function(item){
-console.log(item);
-//item.innerHTML='item';
+// items.forEach(function(item){
+// console.log(item);
+// //item.innerHTML='item';
 
 
-  //   if(item.children[1].textContent == 'Item 1'){
-//     item.style.backgroundColor='green';
+//   //   if(item.children[1].textContent == 'Item 1'){
+// //     item.style.backgroundColor='green';
+// // }
+// });
+// items.forEach((item) =>  item.style.color = 'red');
+
+// const ul = document.querySelector('.items');
+// ul.children[1].innerText='ola';
+// let c=0;
+// const btn = document.querySelector('.btn');
+// btn.addEventListener('click',(e) => {
+// btn.style.backgroundColor='red';
+// e.preventDefault();
+// console.log(e);
+// //const a= e.target.id;
+// document.querySelector('#my-form').style.backgroundColor=`#ccc${c}`;
+// c++;
+// if(c==10){
+//     c=0;
 // }
-});
-items.forEach((item) =>  item.style.color = 'red');
+// document.querySelector('body').classList.add('bg-dark');
 
-const ul = document.querySelector('.items');
-ul.children[1].innerText='ola';
-let c=0;
-const btn = document.querySelector('.btn');
-btn.addEventListener('click',(e) => {
-btn.style.backgroundColor='red';
-e.preventDefault();
-console.log(e);
-//const a= e.target.id;
-document.querySelector('#my-form').style.backgroundColor=`#ccc${c}`;
-c++;
-if(c==10){
-    c=0;
+// });
+
+const myForm = document.querySelector('#my-form');
+const nameInput = document.querySelector('#name');
+const emailInput = document.querySelector('#email');
+const msg = document.querySelector('.msg');
+const userList = document.querySelector('#users');
+
+myForm.addEventListener('submit', onSubmit);
+
+function onSubmit(e){
+    e.preventDefault();
+    if(nameInput.value === '' || emailInput.value === ''){
+        msg.classList.add('error');
+        msg.innerHTML = 'Please enter all fields';
+
+        setTimeout(() => msg.remove(), 3000);
+    }else{
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`));
+
+        userList.appendChild(li);
+
+        //clear fields
+        nameInput.value = '';
+        emailInput.value = '';
+    }
 }
-document.querySelector('body').classList.add('bg-dark');
-
-});
